@@ -23,6 +23,7 @@
   },
   "scripts": {
     "build-sass": "gulp build-sass",
+    "prerelease" : "npm run build-sass",
     "release": "jspm bundle-sfx app.js dist/app.js"
   }
 }
