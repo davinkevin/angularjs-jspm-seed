@@ -1,8 +1,10 @@
 import angular from 'angular';
-import MyController from 'listing/message';
+import Func1 from 'listing/message';
+import Config from 'config/config';
 
-let myJspmApp = angular.module('myJspmApp', [
-  MyController.name
+let app = angular.module('app', [
+  Func1.name,
+  Config.name
 ]);
 
-angular.element(document).ready(() =>  angular.bootstrap(document.body, [ myJspmApp.name ], { strictDi: true }));
+angular.element(document).ready(() =>  angular.bootstrap(document.body, [ app.name ], { strictDi: true }));

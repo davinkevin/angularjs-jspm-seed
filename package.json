@@ -4,7 +4,9 @@
       "baseURL": "public"
     },
     "dependencies": {
-      "angular": "npm:angular@1.4.7"
+      "angular": "npm:angular@1.4.7",
+      "bootstrap-sass": "github:twbs/bootstrap-sass@^3.3.5",
+      "systemjs/plugin-css": "github:systemjs/plugin-css@0.1.17"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
@@ -18,6 +20,7 @@
     "gulp-sass": "^2.0.4"
   },
   "scripts": {
-    "build-sass": "gulp build-sass"
+    "build-sass": "gulp build-sass",
+    "release" : "jspm build-sfx app.js"
   }
 }

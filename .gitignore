@@ -54,5 +54,5 @@ node_modules
 
 # Project  :
 public/jspm_packages
-public/*.css
+public/**/*.css
 

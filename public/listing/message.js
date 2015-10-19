@@ -15,5 +15,5 @@ class MyController {
 }
 
 export default angular
-  .module('myCtrl', [])
-  .controller('MyController', MyController);
+  .module('app.func1', [])
+    .controller('MyController', MyController);

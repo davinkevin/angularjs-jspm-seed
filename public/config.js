@@ -17,7 +17,9 @@ System.config({
     "angular": "npm:angular@1.4.7",
     "babel": "npm:babel-core@5.8.25",
     "babel-runtime": "npm:babel-runtime@5.8.25",
+    "bootstrap-sass": "github:twbs/bootstrap-sass@3.3.5",
     "core-js": "npm:core-js@1.2.2",
+    "systemjs/plugin-css": "github:systemjs/plugin-css@0.1.17",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
