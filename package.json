@@ -20,12 +20,13 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.0.4"
+    "gulp-sass": "^2.0.4",
+    "http-server": "^0.8.5"
   },
   "scripts": {
     "build-sass": "gulp build-sass",
-    "prerelease" : "npm run build-sass",
+    "prerelease": "npm run build-sass",
     "release": "jspm bundle-sfx app.js dist/app.js",
-    "serve" : "http-server -p 8000"
+    "serve": "http-server -p 8000"
   }
 }
