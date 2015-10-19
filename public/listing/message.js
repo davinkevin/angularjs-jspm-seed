@@ -2,7 +2,7 @@ import angular from 'angular';
 
 class MyController {
   constructor () {
-    this.pageName = "Foo !";
+    this.pageName = "An Angular Seed Project :D";
     this.messages = [];
   }
 

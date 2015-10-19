@@ -5,13 +5,33 @@
     <title>ES2015-2016</title>
 </head>
 <body>
-<div ng-controller="MyController as ctrl">
-    <h1 ng-bind="ctrl.pageName"></h1>
-    <ul>
-       <li ng-repeat="message in ctrl.messages" ng-bind="message.text"></li>
-    </ul>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Foo Coporate
+            </a>
+        </div>
+    </div>
+</nav>
 
-    <button ng-click="ctrl.populate()">Populate</button>
+<div ng-controller="MyController as ctrl">
+
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 ng-bind="ctrl.pageName"></h1>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more (or not...)</a></p>
+        </div>
+
+        <ul>
+           <li ng-repeat="message in ctrl.messages" ng-bind="message.text"></li>
+        </ul>
+
+        <button ng-click="ctrl.populate()">Populate</button>
+    </div>
+
 </div>
 <script src="jspm_packages/system.js"></script>
 <script src="config.js"></script>
