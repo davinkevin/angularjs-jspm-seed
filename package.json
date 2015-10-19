@@ -3,6 +3,7 @@
     "directories": {
       "baseURL": "public"
     },
+    "configFile": "public/system.config.js",
     "dependencies": {
       "angular": "npm:angular@1.4.7",
       "bootstrap-sass": "github:twbs/bootstrap-sass@^3.3.5",
