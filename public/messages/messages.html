@@ -1,0 +1,15 @@
+<div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 ng-bind="mc.pageName"></h1>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more (or not...)</a></p>
+        </div>
+
+        <ul>
+            <li ng-repeat="message in mc.messages" ng-bind="message.text"></li>
+        </ul>
+
+        <button ng-click="mc.populate()">Populate</button>
+    </div>
+</div>

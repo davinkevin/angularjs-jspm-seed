@@ -17,6 +17,7 @@ System.config({
 
   map: {
     "angular": "npm:angular@1.4.7",
+    "angular-route": "npm:angular-route@1.4.7",
     "babel": "npm:babel-core@5.8.25",
     "babel-runtime": "npm:babel-runtime@5.8.25",
     "bootstrap-sass": "github:twbs/bootstrap-sass@3.3.5",
@@ -24,6 +25,8 @@ System.config({
     "core-js": "npm:core-js@1.2.2",
     "css": "github:systemjs/plugin-css@0.1.19",
     "systemjs/plugin-css": "github:systemjs/plugin-css@0.1.17",
+    "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
+    "text": "github:systemjs/plugin-text@0.0.2",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

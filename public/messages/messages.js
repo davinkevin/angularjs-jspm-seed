@@ -1,4 +1,6 @@
 import angular from 'angular';
+import AppRouteConfig from 'config/route'
+import template from './messages.html!text'
 
 class MyController {
   constructor () {
@@ -14,6 +16,18 @@ class MyController {
   }
 }
 
+function routeConfig($routeProvider) {
+  $routeProvider.
+    when('/messages', {
+      template: template,
+      controller: 'MyController',
+      controllerAs: 'mc'
+    });
+}
+
 export default angular
-  .module('app.func1', [])
-    .controller('MyController', MyController);
+  .module('app.func1', [
+    AppRouteConfig.name
+  ])
+    .controller('MyController', MyController)
+    .config(routeConfig);

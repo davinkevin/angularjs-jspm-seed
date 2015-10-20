@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <title>ES2015-2016</title>
 </head>
@@ -8,31 +9,17 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 Foo Coporate
             </a>
         </div>
     </div>
 </nav>
 
-<div ng-controller="MyController as ctrl">
+<a href="messages">Vers messages</a>
 
-    <div class="container">
+<div ng-view></div>
 
-        <div class="jumbotron">
-            <h1 ng-bind="ctrl.pageName"></h1>
-            <p>...</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more (or not...)</a></p>
-        </div>
-
-        <ul>
-           <li ng-repeat="message in ctrl.messages" ng-bind="message.text"></li>
-        </ul>
-
-        <button ng-click="ctrl.populate()">Populate</button>
-    </div>
-
-</div>
 <script src="jspm_packages/system.js"></script>
 <script src="system.config.js"></script>
 <script>
