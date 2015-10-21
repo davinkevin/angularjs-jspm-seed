@@ -1,5 +1,5 @@
 import angular from 'angular';
-import AppRouteConfig from 'config/route'
+import AppRouteConfig from '../config/route'
 import template from './messages.html!text'
 
 class MyController {

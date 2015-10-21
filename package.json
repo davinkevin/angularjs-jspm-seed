@@ -1,9 +1,6 @@
 {
   "jspm": {
-    "directories": {
-      "baseURL": "public"
-    },
-    "configFile": "public/system.config.js",
+    "configFile": "system.config.js",
     "dependencies": {
       "angular": "npm:angular@1.4.7",
       "angular-route": "npm:angular-route@1.4.7",
@@ -22,6 +19,8 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
+    "browser-sync": "^2.9.11",
+    "connect-modrewrite": "^0.8.2",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-minify-css": "^1.2.1",
@@ -30,10 +29,13 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.7",
     "http-server": "^0.8.5",
     "jspm": "^0.16.13",
+    "path": "^0.12.7",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.4"
+    "run-sequence": "^1.1.4",
+    "systemjs-builder": "^0.14.9"
   },
   "scripts": {
     "prerelease": "gulp sass",
@@ -41,7 +43,7 @@
     "postinstall": "jspm install",
     "release": "gulp build",
     "build-sass": "gulp sass",
-    "serve": "http-server -p 8000",
+    "serve": "http-server -p 8000 .",
     "serve-prod": "http-server -p 8001 dist/",
     "start": "npm install && npm run serve-prod"
   }

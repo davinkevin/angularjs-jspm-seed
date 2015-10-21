@@ -7,13 +7,21 @@ import rename from 'gulp-rename';
 import minifyCSS from 'gulp-minify-css';
 import runSequence from 'run-sequence';
 import del from 'del';
+import Builder from 'systemjs-builder';
+import paths from '../paths';
 
 function jspmBuildSfx (baseUrl, configFile, outputName) {
-  return new jspm.Builder(baseUrl, `${baseUrl}/${configFile}`).buildStatic('app', `dist/${outputName}.js`, {sourceMaps: true});
+
 }
 
 gulp.task('build-jspm', function(cal){
-  jspmBuildSfx('public', 'system.config.js', 'app').finally(cal);
+  let builder = new Builder();
+  builder.loadConfig(paths.systemConfigJs)
+    .then(() => {
+      builder.buildStatic(paths.app.entryPoint, `dist/app.js`, {sourceMaps: true})
+        .then(() => cal())
+        .catch((ex) => cal(new Error(ex)));
+    });
 });
 
 gulp.task('build-js', () => {
