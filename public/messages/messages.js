@@ -3,7 +3,8 @@ import AppRouteConfig from 'config/route'
 import template from './messages.html!text'
 
 class MyController {
-  constructor () {
+  constructor ($http) {
+    this.$http = $http;
     this.pageName = "An Angular Seed Project :D";
     this.messages = [];
   }
@@ -24,6 +25,9 @@ function routeConfig($routeProvider) {
       controllerAs: 'mc'
     });
 }
+
+MyController.$inject = ['$http'];
+routeConfig.$inject = ['$routeProvider'];
 
 export default angular
   .module('app.func1', [
