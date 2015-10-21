@@ -28,9 +28,12 @@
     "jspm": "^0.16.13"
   },
   "scripts": {
-    "build-sass": "gulp build-sass",
     "prerelease": "npm run build-sass",
+    "preserve-prod" : "npm run release",
+    "build-sass": "gulp build-sass",
+
     "release": "jspm bundle-sfx app.js dist/app.js",
-    "serve": "http-server -p 8000"
+    "serve": "http-server -p 8000",
+    "serve-prod": "http-server -p 8001 dist/"
   }
 }
