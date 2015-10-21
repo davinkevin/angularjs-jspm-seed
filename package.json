@@ -32,7 +32,7 @@
     "preserve-prod" : "npm run release",
     "build-sass": "gulp build-sass",
 
-    "release": "jspm bundle-sfx app.js dist/app.js",
+    "release": "gulp build",
     "serve": "http-server -p 8000",
     "serve-prod": "http-server -p 8001 dist/"
   }
