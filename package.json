@@ -38,12 +38,11 @@
   "scripts": {
     "prerelease": "gulp sass",
     "preserve-prod": "npm run release",
-
-    "build-sass": "gulp sass",
     "postinstall": "jspm install",
     "release": "gulp build",
-
+    "build-sass": "gulp sass",
     "serve": "http-server -p 8000",
-    "serve-prod": "http-server -p 8001 dist/"
+    "serve-prod": "http-server -p 8001 dist/",
+    "start": "npm install && npm run serve-prod"
   }
 }
