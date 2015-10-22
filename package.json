@@ -48,14 +48,14 @@
   "scripts": {
     "prerelease": "gulp sass",
     "preserve-prod": "npm run release",
-    "pretest" :  "npm install",
+    "pretest": "npm install",
     "postinstall": "jspm install",
     "release": "gulp build",
     "build-sass": "gulp sass",
-    "serve": "http-server -p 8000 .",
+    "serve": "gulp serve",
     "serve-prod": "http-server -p 8001 dist/",
     "start": "npm install && npm run serve-prod",
-    "test" : "karma start karma.config.js --single-run",
-    "test-tdd" : "karma start karma.config.js"
+    "test": "karma start karma.config.js --single-run",
+    "test-tdd": "karma start karma.config.js"
   }
 }
