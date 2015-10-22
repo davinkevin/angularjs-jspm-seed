@@ -15,7 +15,7 @@ gulp.task('build-jspm', function(cal){
   let builder = new Builder();
   builder.loadConfig(paths.systemConfigJs)
     .then(() => {
-      builder.buildStatic(paths.app.entryPoint, `${paths.releaseDir}/${paths.appName}.js`, {sourceMaps: true})
+      builder.buildStatic(paths.app.entryPoint, `${paths.releaseDir}/${paths.app.name}.js`, {sourceMaps: true})
         .then(() => cal())
         .catch((ex) => cal(new Error(ex)));
     });
@@ -40,20 +40,20 @@ gulp.task('build-css', () => {
 
 gulp.task('build-index-html', () => {
   let sources = gulp.src([
-      `${paths.releaseDir}/${paths.appName}.min.css`,
-      `${paths.releaseDir}/${paths.appName}.min.js`
+      `${paths.releaseDir}/${paths.app.name}.min.css`,
+      `${paths.releaseDir}/${paths.app.name}.min.js`
   ], {read: false});
-  return gulp.src(`${paths.root}/public/index.html`)
-    .pipe(inject(sources, { ignorePath: 'dist/' }))
+  return gulp.src(`${paths.srcDir}/index.html`)
+    .pipe(inject(sources, { ignorePath: paths.releaseDirName }))
     .pipe(gulp.dest(paths.releaseDir))
 });
 
 gulp.task('build-clean', (cal) => {
   let targets = [
-      `${paths.releaseDir}/${paths.appName}.css`,
-      `${paths.releaseDir}/${paths.appName}.css.map`,
-      `${paths.releaseDir}/${paths.appName}.js`,
-      `${paths.releaseDir}/${paths.appName}.js.map`
+      `${paths.releaseDir}/${paths.app.name}.css`,
+      `${paths.releaseDir}/${paths.app.name}.css.map`,
+      `${paths.releaseDir}/${paths.app.name}.js`,
+      `${paths.releaseDir}/${paths.app.name}.js.map`
   ];
   del(targets, cal);
 });
