@@ -10,10 +10,6 @@ import del from 'del';
 import Builder from 'systemjs-builder';
 import paths from '../paths';
 
-function jspmBuildSfx (baseUrl, configFile, outputName) {
-
-}
-
 gulp.task('build-jspm', function(cal){
   let builder = new Builder();
   builder.loadConfig(paths.systemConfigJs)
