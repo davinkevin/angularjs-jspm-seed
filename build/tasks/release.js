@@ -5,6 +5,7 @@ import ngAnnotate from 'gulp-ng-annotate';
 import uglify from 'gulp-uglify';
 import rename from 'gulp-rename';
 import minifyCSS from 'gulp-minify-css';
+import inject from 'gulp-inject';
 import runSequence from 'run-sequence';
 import del from 'del';
 import Builder from 'systemjs-builder';
@@ -37,6 +38,16 @@ gulp.task('build-css', () => {
     .pipe(gulp.dest(paths.releaseDir))
 });
 
+gulp.task('build-index-html', () => {
+  let sources = gulp.src([
+      `${paths.releaseDir}/${paths.appName}.min.css`,
+      `${paths.releaseDir}/${paths.appName}.min.js`
+  ], {read: false});
+  return gulp.src(`${paths.root}/public/index.html`)
+    .pipe(inject(sources, { ignorePath: 'dist/' }))
+    .pipe(gulp.dest(paths.releaseDir))
+});
+
 gulp.task('build-clean', (cal) => {
   let targets = [
       `${paths.releaseDir}/${paths.appName}.css`,
@@ -51,6 +62,7 @@ gulp.task('build', (cal) => {
   runSequence(
     'build-jspm',
     ['build-js', 'build-css'],
+    'build-index-html',
     'build-clean',
     cal);
 });

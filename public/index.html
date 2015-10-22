@@ -4,6 +4,8 @@
     <base href="/">
     <meta charset="utf-8">
     <title>ES2015-2016</title>
+    <!-- inject:css -->
+    <!-- endinject -->
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -20,10 +22,12 @@
 
 <div ng-view></div>
 
+<!-- inject:js -->
 <script src="jspm_packages/system.js"></script>
 <script src="system.config.js"></script>
 <script>
     System.import("app");
 </script>
+<!-- endinject -->
 </body>
 </html>
