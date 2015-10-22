@@ -11,6 +11,8 @@ const root = path.dirname(__dirname);
 export default {
   root : root,
   systemConfigJs : `${root}/system.config.js`,
+  packageJson : `${root}/package.json`,
+  changeLog : `${root}/CHANGELOG.md`,
   srcDir: `${root}/${srcDirName}`,
   releaseDir: `${root}/${releaseDirName}`,
   releaseDirName: releaseDirName,
