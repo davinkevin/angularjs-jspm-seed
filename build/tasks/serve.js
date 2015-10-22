@@ -1,11 +1,11 @@
-
 import gulp from 'gulp';
 import util from 'gulp-util';
 import browserSync from 'browser-sync';
 import runSequence from 'run-sequence';
 import modRewrite  from 'connect-modrewrite';
+import paths from '../paths';
 
-function browerSync(directoryBase, files, browser) {
+function startBrowserSync(directoryBase, files, browser) {
   browser = browser === undefined ? 'default' : browser;
   files = files === undefined ? 'default' : files;
 
@@ -25,5 +25,8 @@ function browerSync(directoryBase, files, browser) {
 }
 
 gulp.task('serve', () => {
-  return browerSync(['public', './' ]);
+  startBrowserSync([paths.srcDir, './' ]);
+  gulp.watch(`${paths.srcDir}/**/*.scss`, ['sass', () => {
+      browserSync.reload();
+  }]);
 });
