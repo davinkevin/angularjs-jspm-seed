@@ -1,0 +1,42 @@
+module.exports = function (config) {
+  config.set({
+    frameworks: ['jspm', 'jasmine'],
+
+    files: [
+      'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js'
+    ],
+
+    jspm: {
+      config: 'system.config.js',
+      loadFiles: ['public/**/*.spec.js'],
+      serveFiles: ['public/**/*.+(js|html|css)']
+    },
+
+    proxies: {
+      '/public/': '/base/public/',
+      '/jspm_packages/': '/base/jspm_packages/'
+    },
+
+    reporters: ['dots', 'coverage'],
+
+    preprocessors: {
+      'src/**/!(*.spec).js': ['babel', 'coverage']
+    },
+
+    babelPreprocessor: { options: { sourceMap: 'inline' } },
+
+
+    coverageReporter: {
+      instrumenters: { isparta : require('isparta') },
+      instrumenter: { 'src/**/*.js': 'isparta' },
+      dir: 'reports/coverage/',
+      reporters: [
+        {type: 'html'}, {type: 'json'}, {type: 'lcov'}, {type: 'text-summary'}
+      ]
+    },
+
+    browsers: ['PhantomJS'],
+    singleRun : false,
+    browserNoActivityTimeout: 75000
+  });
+};

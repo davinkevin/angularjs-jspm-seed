@@ -31,8 +31,16 @@
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.7",
     "http-server": "^0.8.5",
+    "isparta": "^3.1.0",
+    "jasmine-core": "^2.3.4",
     "jspm": "^0.16.13",
-    "path": "^0.12.7",
+    "karma": "^0.13.11",
+    "karma-babel-preprocessor": "^5.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "^0.3.6",
+    "karma-jspm": "^2.0.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "systemjs-builder": "^0.14.9"
@@ -40,11 +48,14 @@
   "scripts": {
     "prerelease": "gulp sass",
     "preserve-prod": "npm run release",
+    "pretest" :  "npm install",
     "postinstall": "jspm install",
     "release": "gulp build",
     "build-sass": "gulp sass",
     "serve": "http-server -p 8000 .",
     "serve-prod": "http-server -p 8001 dist/",
-    "start": "npm install && npm run serve-prod"
+    "start": "npm install && npm run serve-prod",
+    "test" : "karma start karma.config.js --single-run",
+    "test-tdd" : "karma start karma.config.js"
   }
 }
