@@ -24,9 +24,10 @@ function startBrowserSync(directoryBase, files, browser) {
   });
 }
 
-gulp.task('serve', () => {
+gulp.task('serve', ['sass'], () => {
+
   startBrowserSync([paths.srcDir, './' ]);
-  gulp.watch(`${paths.srcDir}/**/*.scss`, ['sass', () => {
-      browserSync.reload();
-  }]);
+
+  gulp.watch(`${paths.srcDir}/**/*.scss`, ['sass', browserSync.reload ]);
+
 });

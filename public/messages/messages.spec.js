@@ -2,7 +2,8 @@ import MessageCtrl from './messages.controller';
 import routeConfig from './messages.route';
 import template from './messages.html!text';
 import messagesModule from './messages';
-import mocks from 'angular-mocks';
+
+import 'angular-mocks';
 
 
 describe("Message Component", () => {
@@ -56,7 +57,7 @@ describe("Message Component", () => {
 
     let $controller;
 
-    beforeEach(module('app.func1'));
+    beforeEach(module(messagesModule.name));
     beforeEach(inject((_$controller_) =>  $controller = _$controller_ ));
 
     it('should have a controller named Func1Ctrl', () => {
