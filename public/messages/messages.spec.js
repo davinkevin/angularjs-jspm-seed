@@ -1,7 +1,9 @@
-import angular from 'angular';
 import MessageCtrl from './messages.controller';
 import routeConfig from './messages.route';
+import template from './messages.html!text';
 import messagesModule from './messages';
+import mocks from 'angular-mocks';
+
 
 describe("Message Component", () => {
 
@@ -45,14 +47,20 @@ describe("Message Component", () => {
       expect(route).toBe('/messages');
       expect(param.controller).toBe('Func1Ctrl');
       expect(param.controllerAs).toBe('mc');
-      expect(param.controllerAs).toBeDefined();
+      expect(param.template).toBe(template);
     });
 
   });
 
   describe('Message Module', () => {
-    it("should be named like", () => {
-      expect(messagesModule.name).toBe('app.func1');
+
+    let $controller;
+
+    beforeEach(module('app.func1'));
+    beforeEach(inject((_$controller_) =>  $controller = _$controller_ ));
+
+    it('should have a controller named Func1Ctrl', () => {
+      expect($controller('Func1Ctrl')).toBeDefined();
     });
   });
 

@@ -5,6 +5,7 @@
 import template from './messages.html!text';
 
 export default function routeConfig($routeProvider) {
+  "ngInject";
   $routeProvider.
     when('/messages', {
       template: template,

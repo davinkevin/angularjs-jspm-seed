@@ -5,6 +5,7 @@
 
 export default class MyController {
   constructor ($http) {
+    "ngInject";
     this.$http = $http;
     this.pageName = "An Angular Seed Project :D";
     this.messages = [];
