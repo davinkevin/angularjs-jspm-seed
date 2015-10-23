@@ -3,7 +3,7 @@ import paths from '../paths';
 import eslint from 'gulp-eslint';
 
 gulp.task('lint-js', () => {
-  return gulp.src(['public/**/*.js'])
+  return gulp.src([paths.glob.js])
     .pipe(eslint())
     .pipe(eslint.format());
 });

@@ -17,7 +17,11 @@ export default {
   releaseDir: `${root}/${releaseDirName}`,
   releaseDirName: releaseDirName,
   app: {
-    entryPoint : `${srcDirName}/app`,
+    entryPoint : `${srcDirName}/${appName}`,
     name: appName
+  },
+  glob: {
+    scss : `${root}/${srcDirName}/**/*.scss`,
+    js : `${root}/${srcDirName}/**/!(*.spec).js`
   }
 }

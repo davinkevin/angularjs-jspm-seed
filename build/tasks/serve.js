@@ -28,6 +28,7 @@ gulp.task('serve', ['sass'], () => {
 
   startBrowserSync([paths.srcDir, './' ]);
 
-  gulp.watch(`${paths.srcDir}/**/*.scss`, ['sass', browserSync.reload ]);
+  gulp.watch(`${paths.glob.scss}`, ['sass', browserSync.reload ]);
+  gulp.watch(`${paths.glob.js}`, ['lint-js', browserSync.reload ]);
 
 });
