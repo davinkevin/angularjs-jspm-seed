@@ -1,5 +1,4 @@
 import MessageCtrl from './messages.controller';
-import routeConfig from './messages.route';
 import template from './messages.html!text';
 import messagesModule from './messages';
 
@@ -28,27 +27,28 @@ describe("Message Component", () => {
       mc.populate();
       expect(mc.messages).toBeArrayOfSize(4);
     });
-  });
 
-  describe('Message Route', () => {
+    describe('Message Route', () => {
 
-    let $routeProvider, route, param;
+      let $routeProvider, route, param;
 
-    beforeEach(() => {
-      $routeProvider = {
-        when : function when(_route, _param) {
-          route = _route;
-          param = _param;
-        }
-      };
-    });
+      beforeEach(() => {
+        $routeProvider = {
+          when : function when(_route, _param) {
+            route = _route;
+            param = _param;
+          }
+        };
+      });
 
-    it('should publish route', () => {
-      routeConfig($routeProvider);
-      expect(route).toBe('/messages');
-      expect(param.controller).toBe('Func1Ctrl');
-      expect(param.controllerAs).toBe('mc');
-      expect(param.template).toBe(template);
+      it('should publish route', () => {
+        MessageCtrl.routeConfig($routeProvider);
+        expect(route).toBe('/messages');
+        expect(param.controller).toBe('Func1Ctrl');
+        expect(param.controllerAs).toBe('mc');
+        expect(param.template).toBe(template);
+      });
+
     });
 
   });
