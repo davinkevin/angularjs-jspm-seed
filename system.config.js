@@ -25,7 +25,6 @@ System.config({
     "clean-css": "npm:clean-css@3.4.6",
     "core-js": "npm:core-js@1.2.2",
     "css": "github:systemjs/plugin-css@0.1.19",
-    "systemjs/plugin-css": "github:systemjs/plugin-css@0.1.17",
     "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:jspm/nodelibs-assert@0.1.0": {
