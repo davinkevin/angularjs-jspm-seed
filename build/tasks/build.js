@@ -11,6 +11,9 @@ import del from 'del';
 import Builder from 'systemjs-builder';
 import paths from '../paths';
 
+let prodFiles = ['min.css', 'min.js'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
+let filesToDelete = ['css', 'css.map', 'js', 'js.map'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
+
 gulp.task('build-jspm', function(cal){
   let builder = new Builder();
   builder.loadConfig(paths.systemConfigJs)
@@ -39,17 +42,15 @@ gulp.task('build-css', () => {
 });
 
 gulp.task('build-index-html', () => {
-  let sources = gulp.src([
-      `${paths.releaseDir}/${paths.app.name}.min.css`,
-      `${paths.releaseDir}/${paths.app.name}.min.js`
-  ], {read: false});
+  console.log(prodFiles);
+  let sources = gulp.src(prodFiles, {read: false});
   return gulp.src(`${paths.srcDir}/index.html`)
     .pipe(inject(sources, { ignorePath: paths.releaseDirName }))
     .pipe(gulp.dest(paths.releaseDir))
 });
 
 gulp.task('build-fonts', () => {
-  gulp.src(`${paths.srcDir}/fonts/**/*`)
+  gulp.src(paths.glob.fonts)
     .pipe(gulp.dest(`${paths.releaseDir}/fonts`));
 });
 
@@ -58,13 +59,7 @@ gulp.task('build-pre-clean', (cb) =>
 );
 
 gulp.task('build-clean', (cal) => {
-  let targets = [
-      `${paths.releaseDir}/${paths.app.name}.css`,
-      `${paths.releaseDir}/${paths.app.name}.css.map`,
-      `${paths.releaseDir}/${paths.app.name}.js`,
-      `${paths.releaseDir}/${paths.app.name}.js.map`
-  ];
-  return del(targets, cal);
+  return del(filesToDelete, cal);
 });
 
 gulp.task('build', (cal) => {
