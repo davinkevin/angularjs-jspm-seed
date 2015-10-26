@@ -48,6 +48,15 @@ gulp.task('build-index-html', () => {
     .pipe(gulp.dest(paths.releaseDir))
 });
 
+gulp.task('build-fonts', () => {
+  gulp.src(`${paths.srcDir}/fonts/**/*`)
+    .pipe(gulp.dest(`${paths.releaseDir}/fonts`));
+});
+
+gulp.task('build-pre-clean', (cb) =>
+    del([`${paths.releaseDir}/**/*`, `!${paths.releaseDir}/.keep`], cb)
+);
+
 gulp.task('build-clean', (cal) => {
   let targets = [
       `${paths.releaseDir}/${paths.app.name}.css`,
@@ -55,13 +64,14 @@ gulp.task('build-clean', (cal) => {
       `${paths.releaseDir}/${paths.app.name}.js`,
       `${paths.releaseDir}/${paths.app.name}.js.map`
   ];
-  del(targets, cal);
+  return del(targets, cal);
 });
 
 gulp.task('build', (cal) => {
   runSequence(
+    ['build-pre-clean'],
     'build-jspm',
-    ['build-js', 'build-css'],
+    ['build-js', 'build-css', 'build-fonts'],
     'build-index-html',
     'build-clean',
     cal);
