@@ -7,7 +7,7 @@ const appName = 'app';
 const srcDirName = 'public';
 const releaseDirName = 'dist';
 const root = path.dirname(__dirname);
-const fontsExtension = ['eot', 'woff2', 'woff', 'ttf', 'svg'];
+const fontsExtension = '{eot,woff2,woff,ttf,svg}';
 
 export default {
   root : root,
@@ -22,7 +22,7 @@ export default {
   },
   releaseDirName: releaseDirName,
   jspm : {
-    fonts : fontsExtension.map(ext => `./jspm_packages/**/*.${ext}`)
+    fonts : `./jspm_packages/**/*.${fontsExtension}`
   },
   app: {
     entryPoint : `${srcDirName}/${appName}`,
@@ -31,6 +31,7 @@ export default {
   glob: {
     scss : `${root}/${srcDirName}/**/*.scss`,
     js : `${root}/${srcDirName}/**/!(*.spec).js`,
-    fonts : fontsExtension.map(ext => `${root}/${srcDirName}/fonts/**/*.${ext}`)
+    fonts : `${root}/${srcDirName}/fonts/**/*.${fontsExtension}`,
+    projectFonts : `${root}/${srcDirName}/**/*.${fontsExtension}`
   }
 }

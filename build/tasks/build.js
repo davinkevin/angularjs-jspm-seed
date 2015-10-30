@@ -10,6 +10,7 @@ import runSequence from 'run-sequence';
 import del from 'del';
 import Builder from 'systemjs-builder';
 import paths from '../paths';
+import flatten from 'gulp-flatten';
 
 let prodFiles = ['min.css', 'min.js'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
 let filesToDelete = ['css', 'css.map', 'js', 'js.map'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
@@ -49,8 +50,9 @@ gulp.task('build-index-html', () => {
 });
 
 gulp.task('build-fonts', () => {
-  gulp.src(paths.glob.fonts)
-    .pipe(gulp.dest(`${paths.releaseDir}/fonts`));
+  gulp.src([paths.jspm.fonts, paths.glob.projectFonts, '!'+paths.glob.fonts])
+    .pipe(flatten())
+    .pipe(gulp.dest(paths.release.fonts));
 });
 
 gulp.task('build-pre-clean', (cb) =>
