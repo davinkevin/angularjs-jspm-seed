@@ -63,12 +63,13 @@
     "systemjs-builder": "^0.14.9"
   },
   "scripts": {
-    "prerelease": "gulp sass",
+    "prebuild": "gulp sass",
     "preserve-prod": "npm run release",
     "pretest": "npm install",
     "postinstall": "jspm install",
     "build": "gulp build",
-    "build-sass": "gulp sass",
+    "release" : "gulp release --type $(type)",
+    "sass": "gulp sass",
     "serve": "gulp serve",
     "serve-prod": "http-server -p 8001 dist/",
     "start": "npm install && npm run serve-prod",

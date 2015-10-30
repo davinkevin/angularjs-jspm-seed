@@ -19,7 +19,7 @@ gulp.task('bump', (cb) => {
 
     let hasValidType = !!argv.type ? !!argv.type.match(new RegExp(/major|minor|patch/)) : false;
     if (!hasValidType) {
-        util.log(util.colors.red('Error: Required bump \'type\' is missing! Usage: gulp release --type=(major|minor|patch)'));
+        util.log(util.colors.red('Error: Required bump \'type\' is missing! Usage: npm run release --type (major|minor|patch)'));
         return process.exit(1);
     }
 

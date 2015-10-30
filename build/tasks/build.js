@@ -42,7 +42,6 @@ gulp.task('build-css', () => {
 });
 
 gulp.task('build-index-html', () => {
-  console.log(prodFiles);
   let sources = gulp.src(prodFiles, {read: false});
   return gulp.src(`${paths.srcDir}/index.html`)
     .pipe(inject(sources, { ignorePath: paths.releaseDirName }))
