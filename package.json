@@ -64,7 +64,7 @@
   },
   "scripts": {
     "prebuild": "gulp sass",
-    "preserve-prod": "npm run release",
+    "preserve-prod": "gulp build",
     "pretest": "npm install",
     "postinstall": "jspm install",
     "build": "gulp build",
