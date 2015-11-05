@@ -2,9 +2,18 @@
   * angularjs-jspm-seed
   * Created by kdavin on 23/10/2015.
   */
+import {RouteConfig, View} from '../decorators.js';
 import template from './messages.html!text';
 
-export default class MyController {
+
+@RouteConfig({
+  path : '/messages',
+    as : 'mc'
+})
+@View({
+  template : template
+})
+class Func1Ctrl {
 
   constructor ($http) {
     "ngInject";
@@ -19,14 +28,6 @@ export default class MyController {
     this.messages.push({ id : 3, text : 'The third message'});
     this.messages.push({ id : 4, text : 'The fourth message'});
   }
-
-  static routeConfig($routeProvider) {
-    "ngInject";
-    $routeProvider.
-      when('/messages', {
-        template: template,
-        controller: 'Func1Ctrl',
-        controllerAs: 'mc'
-      });
-  }
 }
+
+export default Func1Ctrl;

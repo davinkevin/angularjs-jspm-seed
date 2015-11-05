@@ -23,7 +23,7 @@ module.exports = function (config) {
       'public/**/!(*.spec).js': ['babel', 'coverage']
     },
 
-    babelPreprocessor: { options: { sourceMap: 'inline' } },
+    babelPreprocessor: { options: { stage: 0, sourceMap: 'inline' } },
 
 
     coverageReporter: {

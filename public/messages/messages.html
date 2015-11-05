@@ -7,7 +7,7 @@
         </div>
 
         <ul>
-            <li ng-repeat="message in mc.messages" ng-bind="message.text"></li>
+            <message-with-snake-case ng-repeat="message in mc.messages" text="message.text"></message-with-snake-case>
         </ul>
 
         <button ng-click="mc.populate()">

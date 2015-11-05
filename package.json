@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
+    "babel-eslint": "^4.1.3",
     "browser-sync": "^2.9.11",
     "connect-modrewrite": "^0.8.2",
     "conventional-changelog": "^0.0.11",
@@ -68,7 +69,7 @@
     "pretest": "npm install",
     "postinstall": "jspm install",
     "build": "gulp build",
-    "release" : "gulp release --type $(type)",
+    "release": "gulp release --type $(type)",
     "sass": "gulp sass",
     "serve": "gulp serve",
     "serve-prod": "http-server -p 8001 dist/",
