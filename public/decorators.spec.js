@@ -102,7 +102,7 @@ describe('Decorators', () => {
       expect(componentDefinition.controllerAs).toBe('vm');
       expect(componentDefinition.scope).toBeTruthy();
       expect(componentDefinition.bindToController).toBeTruthy();
-      expect(componentDefinition.link === angular.noop).toBeTruthy();
+      expect(componentDefinition.link).toBeUndefined();
     });
 
     describe('Error definitions', () => {

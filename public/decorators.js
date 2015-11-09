@@ -1,7 +1,7 @@
 
 import angular from 'angular';
 
-export function RouteConfig({ path, as }) {
+export function RouteConfig({ path, as = 'vm' }) {
   return Target => {
 
     if (!Target.$template) throw new TypeError("Template should be defined");
@@ -12,13 +12,13 @@ export function RouteConfig({ path, as }) {
       $routeProvider.when(path, {
         template: Target.$template,
         controller: Target.name,
-        controllerAs : as || 'vm'
+        controllerAs : as
       });
     };
   };
 }
 
-export function Component({restrict, scope, as, bindToController, selector}) {
+export function Component({restrict = 'E', scope = true, as = 'vm', bindToController = true, selector = ""}) {
   return Target => {
     if (!Target.$template) throw new TypeError("A Template should be defined with the annotation @View");
     if (!selector) throw new TypeError("A selector should be defined in the current annotation @Component");
@@ -26,15 +26,17 @@ export function Component({restrict, scope, as, bindToController, selector}) {
     Target.$directiveName = snakeCaseToCamelCase(selector);
 
     Target.component = () => {
-      return {
-        restrict : restrict || 'E',
+      let ddo = {
+        restrict : restrict,
         template: Target.$template,
-        scope : angular.isDefined(scope) ? scope : true,
+        scope : scope,
         controller : Target.name,
-        controllerAs : as || 'vm',
-        bindToController : angular.isDefined(bindToController) ? bindToController : true,
-        link : Target.link || angular.noop
+        controllerAs : as,
+        bindToController : bindToController
       };
+
+      Target.link && (ddo.link = Target.link);
+      return ddo;
     };
   };
 }
