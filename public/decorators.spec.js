@@ -28,7 +28,7 @@ describe('Decorators', () => {
       RouteClass.routeConfig($routeProvider);
 
       /* Then  */
-      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteClass.$template, controller: RouteClass.name, controllerAs : 'valc'});
+      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteClass.$template, controller: RouteClass, controllerAs : 'valc'});
     });
 
     @RouteConfig({path : '/val'})
@@ -43,7 +43,7 @@ describe('Decorators', () => {
       RouteDefaultClass.routeConfig($routeProvider);
 
       /* Then  */
-      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteDefaultClass.$template, controller: RouteDefaultClass.name, controllerAs : 'vm'});
+      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteDefaultClass.$template, controller: RouteDefaultClass, controllerAs : 'vm'});
     });
 
     describe('Error definitions', () => {

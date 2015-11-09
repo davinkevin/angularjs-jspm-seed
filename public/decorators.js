@@ -1,9 +1,6 @@
 
-import angular from 'angular';
-
 export function RouteConfig({ path, as = 'vm' }) {
   return Target => {
-
     if (!Target.$template) throw new TypeError("Template should be defined");
     if (!path) throw new TypeError("A path should be Defined");
 
@@ -11,7 +8,7 @@ export function RouteConfig({ path, as = 'vm' }) {
       "ngInject";
       $routeProvider.when(path, {
         template: Target.$template,
-        controller: Target.name,
+        controller: Target,
         controllerAs : as
       });
     };
@@ -30,7 +27,7 @@ export function Component({restrict = 'E', scope = true, as = 'vm', bindToContro
         restrict : restrict,
         template: Target.$template,
         scope : scope,
-        controller : Target.name,
+        controller : Target,
         controllerAs : as,
         bindToController : bindToController
       };

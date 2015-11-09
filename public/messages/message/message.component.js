@@ -11,6 +11,10 @@ import template from './message.html!text';
 @View({
   template : template
 })
-class Message {}
+class Message {
+  constructor() {
+    this.prefix = "A Component message";
+  }
+}
 
 export default Message;

@@ -8,5 +8,4 @@ export default angular
     AppRouteConfig.name,
     MessageModule.name
   ])
-    .controller(MessageCtrl.name, MessageCtrl)
     .config(MessageCtrl.routeConfig);

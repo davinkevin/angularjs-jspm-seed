@@ -44,25 +44,10 @@ describe("Message Component", () => {
       it('should publish route', () => {
         MessageCtrl.routeConfig($routeProvider);
         expect(route).toBe('/messages');
-        expect(param.controller).toBe('Func1Ctrl');
         expect(param.controllerAs).toBe('mc');
         expect(param.template).toBe(template);
       });
-
     });
 
   });
-
-  describe('Message Module', () => {
-
-    let $controller;
-
-    beforeEach(module(messagesModule.name));
-    beforeEach(inject((_$controller_) =>  $controller = _$controller_ ));
-
-    it('should have a controller named Func1Ctrl', () => {
-      expect($controller('Func1Ctrl')).toBeDefined();
-    });
-  });
-
 });
