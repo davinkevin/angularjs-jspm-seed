@@ -6,8 +6,8 @@ and bundling using JSPM.
 
 # Get started
 
-1) `git clone https://github.com/davinkevin/angularjs-jspm-seed.git`
-2) `npm start`
+1. `git clone https://github.com/davinkevin/angularjs-jspm-seed.git`
+2. `npm start`
 
 # Scripts
 
