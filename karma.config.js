@@ -4,14 +4,11 @@ module.exports = function (config) {
 
     basePath: 'public',
 
-    files: [
-      '../node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js'
-    ],
-
     jspm: {
       config: 'config.js',
-      loadFiles: ['app/**/*.spec.js'],
-      serveFiles: ['app/**/*.+(js|html|css)']
+      loadFiles: ['**/*.spec.ts'],
+      serveFiles: ['**/*.+(ts|html|css)'],
+      stripExtension : true
     },
 
     proxies: {
@@ -21,16 +18,9 @@ module.exports = function (config) {
 
     reporters: ['dots', 'coverage'],
 
-    preprocessors: {
-      'app/**/!(*.spec).js': ['babel', 'coverage']
-    },
-
-    babelPreprocessor: { options: { stage: 0, sourceMap: 'inline' } },
-
-
     coverageReporter: {
       instrumenters: { isparta : require('isparta') },
-      instrumenter: { 'app/**/*.js': 'isparta' },
+      instrumenter: { 'app/**/*.ts': 'isparta' },
       dir: '../reports/coverage/',
       reporters: [
         {type: 'html'},

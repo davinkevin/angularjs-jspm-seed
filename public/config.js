@@ -1,17 +1,16 @@
 System.config({
   baseURL: "/",
   defaultJSExtensions: true,
-  transpiler: "babel",
-  babelOptions: {
-    "stage": 1,
-    "optional": [
-      "runtime",
-      "optimisation.modules.system"
-    ]
-  },
+  transpiler: "typescript",
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
+  },
+
+  packages: {
+    "app": {
+      "defaultExtension": "ts"
+    }
   },
   buildCSS: true,
   separateCSS: true,
@@ -28,6 +27,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.19",
     "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
     "text": "github:systemjs/plugin-text@0.0.2",
+    "typescript": "npm:typescript@1.6.2",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

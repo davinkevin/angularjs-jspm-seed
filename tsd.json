@@ -1,0 +1,24 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "tools",
+  "bundle": "tools/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "421d6610bdb09e1015b71f5991d7a68d079eca21"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "421d6610bdb09e1015b71f5991d7a68d079eca21"
+    },
+    "angularjs/angular-mocks.d.ts": {
+      "commit": "421d6610bdb09e1015b71f5991d7a68d079eca21"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "421d6610bdb09e1015b71f5991d7a68d079eca21"
+    },
+    "jasmine/jasmine.d.ts": {
+      "commit": "1df477aeae8bdbeb65fa7b24d361bc20d37594c1"
+    }
+  }
+}

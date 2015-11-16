@@ -1,8 +1,11 @@
+///<reference path="../decorators.d.ts"/>
+
 /**
   * angularjs-jspm-seed
   * Created by kdavin on 23/10/2015.
   */
-import {RouteConfig, View} from '../decorators.js';
+
+import {RouteConfig, View} from '../decorators';
 import template from './messages.html!text';
 
 
@@ -14,12 +17,11 @@ import template from './messages.html!text';
   template : template
 })
 class Func1Ctrl {
+    private pageName : string = "An Angular Seed Project :D";
+    private messages : Array<any> = [];
 
-  constructor ($http) {
+  constructor ( private $http : ng.IHttpService) {
     "ngInject";
-    this.$http = $http;
-    this.pageName = "An Angular Seed Project :D";
-    this.messages = [];
   }
 
   populate() {

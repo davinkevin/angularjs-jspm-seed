@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+      "target": "es5",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true
+	},
+	"files": [
+        "./public/app/app.js",
+		"./tools/tsd.d.ts"
+	]
+}

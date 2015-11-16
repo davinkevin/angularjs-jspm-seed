@@ -14,7 +14,8 @@
       "angular-route": "npm:angular-route@1.4.7",
       "bootstrap-sass": "github:twbs/bootstrap-sass@^3.3.5",
       "css": "github:systemjs/plugin-css@^0.1.19",
-      "text": "github:systemjs/plugin-text@^0.0.2"
+      "text": "github:systemjs/plugin-text@^0.0.2",
+      "typescript": "npm:typescript@^1.6.2"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
@@ -68,7 +69,7 @@
     "prebuild": "gulp sass",
     "preserve-prod": "gulp build",
     "pretest": "npm install",
-    "postinstall": "jspm install",
+    "postinstall": "jspm install && tsd --reinstall --save",
     "build": "gulp build",
     "release": "gulp release --type $(type)",
     "sass": "gulp sass",
