@@ -1,5 +1,7 @@
 # Angular JSPM Seed
 
+[![Build Status](https://travis-ci.org/davinkevin/angularjs-jspm-seed.svg)](https://travis-ci.org/davinkevin/angularjs-jspm-seed)
+
 Seed project using AngularJS 1.x, Babel and SystemJS, with preconfigured text and css plugins.
 Preconfigured unit tests with Karma / Jasmine and coverage report. Include SASS support, AngularJS annotations,
 and bundling using JSPM.
