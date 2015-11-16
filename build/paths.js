@@ -11,7 +11,7 @@ const fontsExtension = '{eot,woff2,woff,ttf,svg}';
 
 export default {
   root : root,
-  systemConfigJs : `${root}/system.config.js`,
+  systemConfigJs : `${srcDirName}/config.js`,
   packageJson : `${root}/package.json`,
   changeLog : `${root}/CHANGELOG.md`,
   srcDir: `${root}/${srcDirName}`,
@@ -22,15 +22,15 @@ export default {
   },
   releaseDirName: releaseDirName,
   jspm : {
-    fonts : `./jspm_packages/**/*.${fontsExtension}`
+    fonts : `${srcDirName}/jspm_packages/**/*.${fontsExtension}`
   },
   app: {
-    entryPoint : `${srcDirName}/${appName}`,
+    entryPoint : `${appName}/${appName}`,
     name: appName
   },
   glob: {
-    scss : `${root}/${srcDirName}/**/*.scss`,
-    js : `${root}/${srcDirName}/**/!(*.spec).js`,
+    scss : `${root}/${srcDirName}/${appName}/**/*.scss`,
+    js : `${root}/${srcDirName}/${appName}/**/!(*.spec).js`,
     fonts : `${root}/${srcDirName}/fonts/**/*.${fontsExtension}`,
     projectFonts : `${root}/${srcDirName}/**/*.${fontsExtension}`
   }

@@ -9,5 +9,5 @@ gulp.task('sass', () =>
     gulp.src(paths.glob.scss)
       .pipe(sass().on('error', sass.logError))
       .pipe(modifyCssUrl(modifyUrlOfFontUrl))
-      .pipe(gulp.dest('./public'))
+      .pipe(gulp.dest(`${paths.srcDir}/${paths.app.name}`))
 );
