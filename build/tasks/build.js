@@ -8,21 +8,16 @@ import minifyCSS from 'gulp-minify-css';
 import inject from 'gulp-inject';
 import runSequence from 'run-sequence';
 import del from 'del';
-import Builder from 'systemjs-builder';
 import paths from '../paths';
 import flatten from 'gulp-flatten';
 
 let prodFiles = ['min.css', 'min.js'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
 let filesToDelete = ['css', 'css.map', 'js', 'js.map'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
 
-gulp.task('build-jspm', function(cal){
-  let builder = new Builder();
-  builder.loadConfig(paths.systemConfigJs)
-    .then(() => {
-      builder.buildStatic(paths.app.entryPoint, `${paths.releaseDir}/${paths.app.name}.js`, {sourceMaps: true})
-        .then(() => cal())
-        .catch((ex) => cal(new Error(ex)));
-    });
+gulp.task('build-jspm', (cb) => {
+  new jspm.Builder().buildStatic(paths.app.entryPoint, `${paths.releaseDir}/${paths.app.name}.js`, {sourceMaps: true})
+    .then(() => cb())
+    .catch((ex) => cb(new Error(ex)));
 });
 
 gulp.task('build-js', () => {
