@@ -5,7 +5,9 @@
     "url": "https://github.com/davinkevin/angularjs-jspm-seed.git"
   },
   "jspm": {
-    "configFile": "system.config.js",
+    "directories": {
+      "baseURL": "public"
+    },
     "dependencies": {
       "angular": "npm:angular@1.4.7",
       "angular-mocks": "npm:angular-mocks@^1.4.7",

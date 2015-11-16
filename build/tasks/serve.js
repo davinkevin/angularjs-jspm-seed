@@ -26,7 +26,7 @@ function startBrowserSync(directoryBase, files, browser) {
 
 gulp.task('serve', ['sass', 'fonts', 'lint-js'], () => {
 
-  startBrowserSync([paths.srcDir, './' ]);
+  startBrowserSync([paths.srcDir]);
 
   gulp.watch(paths.glob.scss,                       ['sass',    browserSync.reload ]);
   gulp.watch(paths.glob.js,                         ['lint-js', browserSync.reload ]);

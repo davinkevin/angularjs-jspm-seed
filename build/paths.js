@@ -22,16 +22,16 @@ export default {
   },
   releaseDirName: releaseDirName,
   jspm : {
-    fonts : `./jspm_packages/**/*.${fontsExtension}`
+    fonts : `${root}/${srcDirName}/jspm_packages/**/*.${fontsExtension}`
   },
   app: {
-    entryPoint : `${srcDirName}/${appName}`,
+    entryPoint : `${appName}/${appName}`,
     name: appName
   },
   glob: {
-    scss : `${root}/${srcDirName}/**/*.scss`,
-    js : `${root}/${srcDirName}/**/!(*.spec).js`,
+    scss : `${root}/${srcDirName}/${appName}/**/*.scss`,
+    js : `${root}/${srcDirName}/${appName}/**/!(*.spec).js`,
     fonts : `${root}/${srcDirName}/fonts/**/*.${fontsExtension}`,
-    projectFonts : `${root}/${srcDirName}/**/*.${fontsExtension}`
+    projectFonts : `${root}/${srcDirName}/${appName}/**/*.${fontsExtension}`
   }
 }
