@@ -1,11 +1,41 @@
-import angular from 'angular';
-import MessageCtrl from './messages.controller';
+/**
+  * angularjs-jspm-seed
+  * Created by kdavin on 23/10/2015.
+  */
+import {RouteConfig, View, Module} from '../decorators.js';
 import AppRouteConfig from '../config/route/route';
 import MessageModule from './message/message';
+import template from './messages.html!text';
 
-export default angular
-  .module('app.func1', [
+@Module({
+  name : 'app.func1',
+  modules : [
     AppRouteConfig.name,
     MessageModule.name
-  ])
-    .config(MessageCtrl.routeConfig);
+  ]
+})
+@RouteConfig({
+  path : '/messages',
+    as : 'mc'
+})
+@View({
+  template : template
+})
+class Func1Ctrl {
+
+  constructor ($http) {
+    "ngInject";
+    this.$http = $http;
+    this.pageName = "An Angular Seed Project :D";
+    this.messages = [];
+  }
+
+  populate() {
+    this.messages.push({ id : 1, text : 'The first message'});
+    this.messages.push({ id : 2, text : 'The second message'});
+    this.messages.push({ id : 3, text : 'The third message'});
+    this.messages.push({ id : 4, text : 'The fourth message'});
+  }
+}
+
+export default Func1Ctrl;

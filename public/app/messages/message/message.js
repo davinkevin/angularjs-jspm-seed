@@ -1,6 +1,24 @@
-import angular from 'angular';
-import Message from './message.component';
+import {Component, View, Module} from '../../decorators.js';
+import template from './message.html!text';
 
-export default angular
-  .module('app.func1.subFunc1', [])
-  .directive(Message.$directiveName, Message.component);
+
+@Module({
+  name : 'app.func1.subFunc1'
+})
+@Component({
+  selector : 'message-with-snake-case',
+  bindToController : {
+    text : '='
+  },
+  as : 'mic'
+})
+@View({
+  template : template
+})
+class Message {
+  constructor() {
+    this.prefix = "A Component message";
+  }
+}
+
+export default Message;

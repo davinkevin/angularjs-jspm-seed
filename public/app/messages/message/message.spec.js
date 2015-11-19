@@ -1,4 +1,4 @@
-import Message from './message.component';
+import Message from './message';
 
 describe('Message', () => {
 

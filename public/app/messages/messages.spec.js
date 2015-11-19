@@ -1,7 +1,5 @@
-import MessageCtrl from './messages.controller';
+import MessageCtrl from './messages';
 import template from './messages.html!text';
-import messagesModule from './messages';
-
 import 'angular-mocks';
 
 

@@ -1,4 +1,4 @@
-import {RouteConfig, View, Component} from './decorators';
+import {RouteConfig, View, Component, Module} from './decorators';
 import angular from 'angular';
 
 describe('Decorators', () => {
@@ -116,6 +116,61 @@ describe('Decorators', () => {
         expect(wrappedRouteConfig).toThrow();
       });
     });
+
+  });
+
+  describe('@Module', () => {
+
+    describe('@RouteConfig', () => {
+      @Module({name : 'Foo', modules : ['Val1', 'Val2']})
+      @RouteConfig({path : '/val', as : 'valc'})
+      @View({ template : '<foo></foo>'})
+      class RouteModuleClazz{}
+
+      it('should create a module', () => {
+        expect(RouteModuleClazz.$angularModule).toBeDefined();
+        expect(RouteModuleClazz.$angularModule.name).toBe('Foo');
+      });
+
+    });
+    describe('@Component', () => {
+      @Module({name : 'Foo', modules : ['Val1', 'Val2']})
+      @Component({ selector : 'custom-selector', as : 'mic', restrict : 'AE', scope : false, bindToController : false})
+      @View({ template : '<foo></foo>'})
+      class ComponentModuleClazz{}
+
+      it('should create a module', () => {
+        expect(ComponentModuleClazz.$angularModule).toBeDefined();
+        expect(ComponentModuleClazz.$angularModule.name).toBe('Foo');
+      });
+
+    });
+    describe('Registered inside another angular.module', () => {
+      @Module({inject : angular.module('Foo', [])})
+      @Component({ selector : 'custom-selector', as : 'mic', restrict : 'AE', scope : false, bindToController : false})
+      @View({ template : '<foo></foo>'})
+      class ComponentModuleClazz{}
+
+      it('should create a module', () => {
+        expect(ComponentModuleClazz.$angularModule).toBeDefined();
+        expect(ComponentModuleClazz.$angularModule.name).toBe('Foo');
+      });
+
+    });
+    describe('Errors on @nnotation usage', () => {
+
+      it('should raise error if not elligible element', () => {
+        let wrappedClassWithModule = () => Module({name : 'Foo'})({});
+        expect(wrappedClassWithModule).toThrow();
+      });
+
+      it('should raise error if name and inject define', () => {
+        let wrappedModuleAndInjectClazz = () => Module({name : 'Foo', inject : angular.module('Bar', [])})({});
+        expect(wrappedModuleAndInjectClazz).toThrow();
+      });
+
+    });
+
 
   });
 

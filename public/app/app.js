@@ -3,7 +3,7 @@ import Func1 from './messages/messages';
 import Config from './config/config';
 
 let app = angular.module('app', [
-  Func1.name,
+  Func1.$angularModule.name,
   Config.name
 ]);
 

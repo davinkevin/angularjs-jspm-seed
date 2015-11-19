@@ -1,4 +1,28 @@
 
+import angular from 'angular';
+
+export function Module({name, inject, modules = []}) {
+  return Target => {
+
+    if (angular.isDefined(name) && angular.isDefined(inject))
+      throw new TypeError ("Name and Inject can't be define in the same @Module");
+
+    if (!Target.component && !Target.routeConfig)
+      throw new TypeError ("A @Component or @RouteConfig should be defined first");
+
+    Target.$angularModule = angular.isUndefined(inject) ? angular.module(name, modules) : inject;
+
+    if (Target.component) {
+      Target.$angularModule.directive(Target.$directiveName, Target.component);
+      return;
+    }
+
+    //if (Target.routeConfig) {
+    Target.$angularModule.config(Target.routeConfig);
+    //}
+  };
+}
+
 export function RouteConfig({ path, as = 'vm' }) {
   return Target => {
     if (!Target.$template) throw new TypeError("Template should be defined");
@@ -37,7 +61,6 @@ export function Component({restrict = 'E', scope = true, as = 'vm', bindToContro
     };
   };
 }
-
 
 export function View({template}) {
   return Target => {
