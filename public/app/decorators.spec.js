@@ -1,4 +1,4 @@
-import {RouteConfig, View, Component, Module} from './decorators';
+import {RouteConfig, View, Component, Module, Service} from './decorators';
 import angular from 'angular';
 
 describe('Decorators', () => {
@@ -115,6 +115,17 @@ describe('Decorators', () => {
         let wrappedRouteConfig = () => Component({})(object);
         expect(wrappedRouteConfig).toThrow();
       });
+    });
+
+  });
+
+  describe('@Service', () => {
+
+    @Service('serviceName')
+    class ServiceClazz{}
+
+    it('should has name', () => {
+        expect(ServiceClazz.$serviceName).toBe('serviceName');
     });
 
   });

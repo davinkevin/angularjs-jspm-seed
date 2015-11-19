@@ -7,7 +7,7 @@ export function Module({name, inject, modules = []}) {
     if (angular.isDefined(name) && angular.isDefined(inject))
       throw new TypeError ("Name and Inject can't be define in the same @Module");
 
-    if (!Target.component && !Target.routeConfig)
+    if (!Target.component && !Target.routeConfig && !Target.$serviceName)
       throw new TypeError ("A @Component or @RouteConfig should be defined first");
 
     Target.$angularModule = angular.isUndefined(inject) ? angular.module(name, modules) : inject;
@@ -17,9 +17,11 @@ export function Module({name, inject, modules = []}) {
       return;
     }
 
-    //if (Target.routeConfig) {
+    if (Target.routeConfig) {
     Target.$angularModule.config(Target.routeConfig);
-    //}
+    }
+
+    Target.$angularModule.service(Target.$serviceName, Target);
   };
 }
 
@@ -65,6 +67,12 @@ export function Component({restrict = 'E', scope = true, as = 'vm', bindToContro
 export function View({template}) {
   return Target => {
     Target.$template = template;
+  };
+}
+
+export function Service(name) {
+  return Target => {
+    Target.$serviceName = name;
   };
 }
 

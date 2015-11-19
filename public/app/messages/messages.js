@@ -3,6 +3,7 @@
   * Created by kdavin on 23/10/2015.
   */
 import {RouteConfig, View, Module} from '../decorators.js';
+import CustomLogService from '../common/service/customLogService';
 import AppRouteConfig from '../config/route/route';
 import MessageModule from './message/message';
 import template from './messages.html!text';
@@ -11,7 +12,8 @@ import template from './messages.html!text';
   name : 'app.func1',
   modules : [
     AppRouteConfig.name,
-    MessageModule.name
+    MessageModule.$angularModule.name,
+    CustomLogService.$angularModule.name
   ]
 })
 @RouteConfig({
@@ -23,14 +25,15 @@ import template from './messages.html!text';
 })
 class Func1Ctrl {
 
-  constructor ($http) {
+  constructor (CustomLogService) {
     "ngInject";
-    this.$http = $http;
+    this.customeLogService = CustomLogService;
     this.pageName = "An Angular Seed Project :D";
     this.messages = [];
   }
 
   populate() {
+    this.customeLogService.print('Add 4 messages');
     this.messages.push({ id : 1, text : 'The first message'});
     this.messages.push({ id : 2, text : 'The second message'});
     this.messages.push({ id : 3, text : 'The third message'});
