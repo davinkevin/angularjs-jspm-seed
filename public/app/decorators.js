@@ -77,6 +77,15 @@ export function Config(configFunction) {
   };
 }
 
+export function Boot({ element = document, strictDi = false}) {
+  return Target => {
+    if (!angular.isDefined(Target.$angularModule))
+      throw new TypeError ("@Boot should be used only on a @Module Class");
+
+    angular.element(document).ready(() =>  angular.bootstrap(element, [ Target.$angularModule.name ], { strictDi: strictDi }));
+  };
+}
+
 function snakeCaseToCamelCase(string) {
   return string.replace( /-([a-z])/ig, (_,letter) => letter.toUpperCase());
 }
@@ -86,4 +95,4 @@ function extractAngularModule(clazz) {
     return clazz.$angularModule.name;
 
   return clazz.name ? clazz.name : clazz;
-  }
+}

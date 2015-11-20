@@ -1,4 +1,4 @@
-import {RouteConfig, View, Component, Module, Service} from './decorators';
+import {RouteConfig, View, Component, Module, Service, Boot} from './decorators';
 import angular from 'angular';
 
 describe('Decorators', () => {
@@ -125,7 +125,7 @@ describe('Decorators', () => {
     class ServiceClazz{}
 
     it('should has name', () => {
-        expect(ServiceClazz.$serviceName).toBe('serviceName');
+      expect(ServiceClazz.$serviceName).toBe('serviceName');
     });
 
   });
@@ -185,6 +185,22 @@ describe('Decorators', () => {
         expect(wrappedModuleAndInjectClazz).toThrow();
       });
 
+    });
+
+  });
+
+  describe('@Boot', () => {
+
+    it('should produce on error on loack of @Module', () => {
+      let wrappedApp = () => Boot({})({});
+      expect(wrappedApp).toThrow();
+    });
+    @Boot({ element : document, strictDi : true})
+    @Module({name : 'app'})
+    class AppClazz {}
+
+    it('should bootstrap the app', () => {
+      expect(AppClazz).toBeDefined();
     });
 
   });
