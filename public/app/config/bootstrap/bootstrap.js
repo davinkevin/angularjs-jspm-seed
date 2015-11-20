@@ -1,4 +1,7 @@
-import angular from 'angular';
+import {Module} from '../../decorators';
 import './bootstrap.css!';
 
-export default angular.module('app.config.bootstrap', []);
+@Module({name : 'app.config.bootstrap'})
+class Bootstrap{}
+
+export default Bootstrap;

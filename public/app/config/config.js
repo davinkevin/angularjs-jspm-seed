@@ -1,8 +1,8 @@
-import angular from 'angular';
+import {Module} from '../decorators';
 import Bootstrap from './bootstrap/bootstrap';
 import RouteConfig from './route/route';
 
-export default angular.module('app.config', [
-  Bootstrap.name,
-  RouteConfig.$angularModule.name
-]);
+@Module({ name : 'app.config', modules : [Bootstrap.$angularModule.name, RouteConfig.$angularModule.name]})
+class Config{}
+
+export default Config;
