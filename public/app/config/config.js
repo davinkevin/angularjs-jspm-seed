@@ -4,5 +4,5 @@ import RouteConfig from './route/route';
 
 export default angular.module('app.config', [
   Bootstrap.name,
-  RouteConfig.name
+  RouteConfig.$angularModule.name
 ]);

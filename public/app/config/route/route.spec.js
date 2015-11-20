@@ -3,31 +3,24 @@
  * Created by kdavin on 09/11/2015.
  */
 import AppRouteConfig from './route';
-import 'angular-mocks';
-import angularRoute from 'angular-route';
 
 describe('app.config.route', () => {
 
   let $routeProvider, $locationProvider;
 
-  beforeEach(module(angularRoute, (_$routeProvider_, _$locationProvider_) => {
-    $routeProvider = _$routeProvider_;
-    $locationProvider = _$locationProvider_;
+  beforeEach(() => {
+    $routeProvider = jasmine.createSpyObj('$routeProvider', ['otherwise']);
+    $locationProvider = jasmine.createSpyObj('$locationProvider', ['html5Mode']);
+  });
 
-    spyOn($routeProvider, 'otherwise').and.callThrough();
-    spyOn($locationProvider , 'html5Mode').and.callThrough();
-  }));
-
-  /* Init the module */
-  beforeEach(module(AppRouteConfig.name));
-
-  it('should define the default route', inject(() => {
-    expect($routeProvider).toBeDefined();
+  it('should define the default route', () => {
+    AppRouteConfig.$config[1]($routeProvider);
     expect($routeProvider.otherwise).toHaveBeenCalledWith({redirectTo: '/'});
-  }));
+  });
 
-  it('should enable the html5mode', inject(() => {
-    expect($locationProvider).toBeDefined();
+  it('should enable the html5mode', () => {
+    AppRouteConfig.$config[0]($locationProvider);
     expect($locationProvider.html5Mode).toHaveBeenCalledWith(true);
-  }));
+  });
+
 });

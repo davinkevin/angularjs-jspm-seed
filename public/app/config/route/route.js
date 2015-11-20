@@ -1,9 +1,12 @@
-import angular from 'angular';
+import {Module, Config} from '../../decorators.js';
 import angularRoute from 'angular-route';
 
-export default angular
-  .module('app.config.route', [
-    angularRoute
-  ])
-  .config($routeProvider => { "ngInject"; $routeProvider.otherwise({redirectTo: '/'}); })
-  .config($locationProvider => { "ngInject"; $locationProvider.html5Mode(true); });
+@Module({name : 'app.config.route', modules : [angularRoute]})
+@Config(
+    $routeProvider => { "ngInject"; $routeProvider.otherwise({redirectTo: '/'}); }
+)
+@Config(
+    $locationProvider => { "ngInject"; $locationProvider.html5Mode(true); }
+)
+class RouteConfig {}
+export default RouteConfig;
