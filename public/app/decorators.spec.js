@@ -133,7 +133,7 @@ describe('Decorators', () => {
   describe('@Module', () => {
 
     describe('@RouteConfig', () => {
-      @Module({name : 'Foo', modules : ['Val1', 'Val2']})
+      @Module({name : 'Foo', modules : ['Val1', {name : 'foo'}]})
       @RouteConfig({path : '/val', as : 'valc'})
       @View({ template : '<foo></foo>'})
       class RouteModuleClazz{}
@@ -148,6 +148,17 @@ describe('Decorators', () => {
       @Module({name : 'Foo', modules : ['Val1', 'Val2']})
       @Component({ selector : 'custom-selector', as : 'mic', restrict : 'AE', scope : false, bindToController : false})
       @View({ template : '<foo></foo>'})
+      class ComponentModuleClazz{}
+
+      it('should create a module', () => {
+        expect(ComponentModuleClazz.$angularModule).toBeDefined();
+        expect(ComponentModuleClazz.$angularModule.name).toBe('Foo');
+      });
+
+    });
+    describe('@Service', () => {
+      @Module({name : 'Foo', modules : ['Val1', 'Val2']})
+      @Service("FooService")
       class ComponentModuleClazz{}
 
       it('should create a module', () => {
@@ -175,7 +186,6 @@ describe('Decorators', () => {
       });
 
     });
-
 
   });
 

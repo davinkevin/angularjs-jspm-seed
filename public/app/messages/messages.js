@@ -11,9 +11,9 @@ import template from './messages.html!text';
 @Module({
   name : 'app.func1',
   modules : [
-    AppRouteConfig.$angularModule.name,
-    MessageModule.$angularModule.name,
-    CustomLogService.$angularModule.name
+    AppRouteConfig,
+    MessageModule,
+    CustomLogService
   ]
 })
 @RouteConfig({

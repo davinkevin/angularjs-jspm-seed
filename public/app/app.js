@@ -4,8 +4,7 @@ import Func1 from './messages/messages';
 import Config from './config/config';
 
 @Module({name : 'app', modules : [
-  Func1.$angularModule.name,
-  Config.$angularModule.name
+  Func1, Config
 ]})
 class App {
 
