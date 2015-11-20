@@ -10,9 +10,13 @@ import runSequence from 'run-sequence';
 import del from 'del';
 import paths from '../paths';
 import flatten from 'gulp-flatten';
+import gzip from 'gulp-gzip';
+import '../utils';
 
-let prodFiles = ['min.css', 'min.js'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
-let filesToDelete = ['css', 'css.map', 'js', 'js.map'].map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
+let prodFiles = ['css', 'js'].map(ext => `${paths.releaseDir}/${paths.app.name}.min.${ext}`);
+let filesToDelete = ['css', 'js']
+  .flatMap(ext => [ext, `${ext}.map`, `${ext}.map.gz`, `${ext}.gz`])
+  .map(ext => `${paths.releaseDir}/${paths.app.name}.${ext}`);
 
 gulp.task('build-jspm', (cb) => {
   new jspm.Builder().buildStatic(paths.app.entryPoint, `${paths.releaseDir}/${paths.app.name}.js`, {sourceMaps: true})
@@ -28,12 +32,16 @@ gulp.task('build-js', () => {
     .pipe(rename({suffix : '.min'}))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.releaseDir))
+    .pipe(gzip())
+    .pipe(gulp.dest(paths.releaseDir))
 });
 
 gulp.task('build-css', () => {
   return gulp.src(`${paths.releaseDir}/${paths.app.name}.css`)
     .pipe(minifyCSS())
     .pipe(rename({suffix : '.min'}))
+    .pipe(gulp.dest(paths.releaseDir))
+    .pipe(gzip())
     .pipe(gulp.dest(paths.releaseDir))
 });
 
@@ -50,8 +58,9 @@ gulp.task('build-fonts', () => {
     .pipe(gulp.dest(paths.release.fonts));
 });
 
-gulp.task('build-pre-clean', (cb) =>
-    del([`${paths.releaseDir}/**/*`, `!${paths.releaseDir}/.keep`], cb)
+gulp.task('build-pre-clean', (cb) => {
+    return del ([`${paths.releaseDir}/**/*`, `!${paths.releaseDir}/.keep`], cb)
+  }
 );
 
 gulp.task('build-clean', (cal) => {
@@ -59,7 +68,7 @@ gulp.task('build-clean', (cal) => {
 });
 
 gulp.task('build', (cal) => {
-  runSequence(
+  return runSequence(
     ['build-pre-clean'],
     'build-jspm',
     ['build-js', 'build-css', 'build-fonts'],
