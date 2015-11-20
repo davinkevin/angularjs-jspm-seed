@@ -16,7 +16,7 @@ module.exports = function (config) {
 
     jspm: {
       config: 'config.js',
-      loadFiles: ['**/*.spec.js'],
+      loadFiles: ['app/app.js', '**/*.spec.js'],
       serveFiles: ['**/*.+(js|html|css)'],
       stripExtension: true
     },

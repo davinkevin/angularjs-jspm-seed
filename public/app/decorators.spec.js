@@ -195,7 +195,7 @@ describe('Decorators', () => {
       let wrappedApp = () => Boot({})({});
       expect(wrappedApp).toThrow();
     });
-    @Boot({ element : document, strictDi : true})
+    @Boot({ element : angular.element('<foo></foo>'), strictDi : true})
     @Module({name : 'app'})
     class AppClazz {}
 
