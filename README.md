@@ -1,5 +1,7 @@
 # Angular JSPM Seed
 
+[![Join the chat at https://gitter.im/davinkevin/angularjs-jspm-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/davinkevin/angularjs-jspm-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/davinkevin/angularjs-jspm-seed.svg)](https://travis-ci.org/davinkevin/angularjs-jspm-seed)
 
 Seed project using AngularJS 1.x, Babel and SystemJS, with preconfigured text and css plugins.
