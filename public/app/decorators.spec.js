@@ -105,11 +105,20 @@ describe('Decorators', () => {
       expect(componentDefinition.link).toBeUndefined();
     });
 
+    it('should register a component without template because type A', () => {
+      @Component({ selector : 'custom-selector', as : 'mic', restrict : 'ACM'})
+      class AttributeClass{}
+
+      expect(true).toBe(true);
+
+    });
+
     describe('Error definitions', () => {
       it('should raise error if no template', () => {
         let wrappedRouteConfig = () => Component({})({});
         expect(wrappedRouteConfig).toThrow();
       });
+
       it('should raise error if no selector', () => {
         let object = { $template : '<div></div>' };
         let wrappedRouteConfig = () => Component({})(object);
