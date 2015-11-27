@@ -168,15 +168,30 @@ describe('Decorators', () => {
 
     });
     describe('Registered inside another angular.module', () => {
+
+
       @Module({inject : angular.module('Foo', [])})
       @Component({ selector : 'custom-selector', as : 'mic', restrict : 'AE', scope : false, bindToController : false})
       @View({ template : '<foo></foo>'})
       class ComponentModuleClazz{}
 
       it('should create a module', () => {
+
         expect(ComponentModuleClazz.$angularModule).toBeDefined();
         expect(ComponentModuleClazz.$angularModule.name).toBe('Foo');
       });
+
+      it('should create a module', () => {
+
+        @Module({inject : ComponentModuleClazz })
+        @Component({ selector : 'custom-selector', as : 'mic', restrict : 'AE', scope : false, bindToController : false})
+        @View({ template : '<foo></foo>'})
+        class SubComponentModuleClazz{}
+
+        expect(SubComponentModuleClazz.$angularModule).toBeDefined();
+        expect(SubComponentModuleClazz.$angularModule.name).toBe('Foo');
+      });
+
 
     });
     describe('Errors on @nnotation usage', () => {
