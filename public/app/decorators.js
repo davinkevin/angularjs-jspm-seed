@@ -19,18 +19,23 @@ export function Module({name, inject, modules = []}) {
   };
 }
 
-export function RouteConfig({ path, as = 'vm' }) {
+export function RouteConfig({ path, as = 'vm', reloadOnSearch = true, resolve = {}}) {
   return Target => {
     if (!Target.$template) throw new TypeError("Template should be defined");
-    if (!path) throw new TypeError("A path should be Defined");
+    if (!path) throw new TypeError("Path should be Defined");
 
     Target.routeConfig = ($routeProvider) => {
       "ngInject";
-      $routeProvider.when(path, {
+
+      let parameters = {
         template: Target.$template,
         controller: Target,
-        controllerAs : as
-      });
+        controllerAs : as,
+        reloadOnSearch : reloadOnSearch,
+        resolve : resolve
+      };
+
+      $routeProvider.when(path, parameters);
     };
   };
 }

@@ -16,34 +16,37 @@ describe('Decorators', () => {
   });
 
   describe('@RouteConfig', () => {
-    @RouteConfig({path : '/val', as : 'valc'})
-    @View({ template : '<foo></foo>'})
-    class RouteClass{}
-
     it('should have static function to define route', () => {
       /* Given */
+      @RouteConfig({path : '/val', as : 'valc', reloadOnSearch : false, resolve : {}})
+      @View({ template : '<foo></foo>'})
+      class RouteClass{}
+
       let $routeProvider = jasmine.createSpyObj('$routeProvider', ['when']);
 
       /* When  */
       RouteClass.routeConfig($routeProvider);
 
       /* Then  */
-      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteClass.$template, controller: RouteClass, controllerAs : 'valc'});
+      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteClass.$template, controller: RouteClass, controllerAs : 'valc', reloadOnSearch : false, resolve : {}});
     });
-
-    @RouteConfig({path : '/val'})
-    @View({ template : '<foo></foo>'})
-    class RouteDefaultClass{}
 
     it('should have static function to define route with default attributes', () => {
       /* Given */
+      @RouteConfig({path : '/val'})
+      @View({ template : '<foo></foo>'})
+      class RouteDefaultClass{}
+
       let $routeProvider = jasmine.createSpyObj('$routeProvider', ['when']);
 
       /* When  */
       RouteDefaultClass.routeConfig($routeProvider);
 
       /* Then  */
-      expect($routeProvider.when).toHaveBeenCalledWith('/val', { template: RouteDefaultClass.$template, controller: RouteDefaultClass, controllerAs : 'vm'});
+      expect($routeProvider.when).toHaveBeenCalledWith(
+        '/val',
+        { template: RouteDefaultClass.$template, controller: RouteDefaultClass, controllerAs : 'vm', reloadOnSearch : true, resolve : {} }
+      );
     });
 
     describe('Error definitions', () => {
