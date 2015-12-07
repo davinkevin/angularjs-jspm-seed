@@ -1,7 +1,5 @@
 import gulp from 'gulp';
-import util from 'gulp-util';
 import browserSync from 'browser-sync';
-import runSequence from 'run-sequence';
 import modRewrite  from 'connect-modrewrite';
 import paths from '../paths';
 
@@ -24,12 +22,6 @@ function startBrowserSync(directoryBase, files, browser) {
   });
 }
 
-gulp.task('serve', ['sass', 'fonts', 'lint-js'], () => {
-
+gulp.task('serve', ['watch'], () => {
   startBrowserSync([paths.srcDir, './']);
-
-  gulp.watch(paths.glob.scss,                       ['sass',    browserSync.reload ]);
-  gulp.watch(paths.glob.js,                         ['lint-js', browserSync.reload ]);
-  gulp.watch([paths.jspm.fonts, paths.glob.fonts],  ['fonts',   browserSync.reload ]);
-
 });

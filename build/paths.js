@@ -32,6 +32,7 @@ export default {
     scss : `${root}/${srcDirName}/${appName}/**/*.scss`,
     js : `${root}/${srcDirName}/${appName}/**/!(*.spec).js`,
     fonts : `${root}/${srcDirName}/fonts/**/*.${fontsExtension}`,
-    projectFonts : `${root}/${srcDirName}/**/*.${fontsExtension}`
+    projectFonts : `${root}/${srcDirName}/**/*.${fontsExtension}`,
+    html : `${root}/${srcDirName}/${appName}/**/*.html`
   }
 }
