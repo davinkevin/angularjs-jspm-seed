@@ -4,7 +4,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import ngAnnotate from 'gulp-ng-annotate';
 import uglify from 'gulp-uglify';
 import rename from 'gulp-rename';
-import minifyCSS from 'gulp-minify-css';
+import cssnano from 'gulp-cssnano';
 import inject from 'gulp-inject';
 import runSequence from 'run-sequence';
 import del from 'del';
@@ -38,7 +38,7 @@ gulp.task('build-js', () => {
 
 gulp.task('build-css', () => {
   return gulp.src(`${paths.releaseDir}/${paths.app.name}.css`)
-    .pipe(minifyCSS())
+    .pipe(cssnano())
     .pipe(rename({suffix : '.min'}))
     .pipe(gulp.dest(paths.releaseDir))
     .pipe(gzip())
