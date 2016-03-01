@@ -16,6 +16,10 @@ export function Module({name, inject, modules = []}) {
     for (let config of Target.$config || []) {
       Target.$angularModule.config(config);
     }
+
+    for (let run of Target.$run || []) {
+      Target.$angularModule.run(run);
+    }
   };
 }
 
@@ -79,6 +83,13 @@ export function Config(configFunction) {
   return Target => {
     if (!Target.$config) Target.$config = [];
     Target.$config.push(configFunction);
+  };
+}
+
+export function Run(runFunction) {
+  return Target => {
+    if (!Target.$run) Target.$run = [];
+    Target.$run.push(runFunction);
   };
 }
 

@@ -1,4 +1,4 @@
-import {RouteConfig, View, Component, Module, Service, Boot} from './decorators';
+import {RouteConfig, View, Component, Module, Service, Boot, Run} from './decorators';
 import angular from 'angular';
 
 describe('Decorators', () => {
@@ -228,6 +228,26 @@ describe('Decorators', () => {
 
     it('should bootstrap the app', () => {
       expect(AppClazz).toBeDefined();
+    });
+
+  });
+
+  describe('@Run', () => {
+
+    it('should invoke run functions', () => {
+      /* Given */
+      let foo, bar;
+      @Module({name: 'Foo'})
+      @Run(() => { foo = 'foo'; })
+      @Run(() => { bar = 'bar'; })
+      class ClassWithRun{}
+
+      /* When */
+      angular.bootstrap(angular.element('<bar></bar>'), ['Foo']);
+
+      /* Then */
+      expect(foo).toEqual('foo');
+      expect(bar).toEqual('bar');
     });
 
   });
