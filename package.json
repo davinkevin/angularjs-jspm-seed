@@ -12,7 +12,7 @@
       "angular": "npm:angular@1.4.7",
       "angular-mocks": "npm:angular-mocks@^1.4.7",
       "angular-route": "npm:angular-route@1.4.7",
-      "bootstrap-sass": "github:twbs/bootstrap-sass@^3.3.5",
+      "bootstrap-sass": "github:twbs/bootstrap-sass@3.3.6",
       "css": "github:systemjs/plugin-css@^0.1.19",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
