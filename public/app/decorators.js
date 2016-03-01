@@ -107,6 +107,8 @@ function snakeCaseToCamelCase(string) {
 }
 
 function extractAngularModuleName(clazz) {
+  if (clazz.default) clazz = clazz.default;
+
   if (clazz.$angularModule)
     return clazz.$angularModule.name;
 

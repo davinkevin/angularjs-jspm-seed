@@ -145,7 +145,7 @@ describe('Decorators', () => {
   describe('@Module', () => {
 
     describe('@RouteConfig', () => {
-      @Module({name : 'Foo', modules : ['Val1', {name : 'foo'}]})
+      @Module({name : 'Foo', modules : ['Val1', {name : 'foo'}, {'default': 'bar'}]})
       @RouteConfig({path : '/val', as : 'valc'})
       @View({ template : '<foo></foo>'})
       class RouteModuleClazz{}
