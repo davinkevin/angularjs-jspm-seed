@@ -10,7 +10,12 @@ module.exports = function (config) {
       'app/**/!(*.spec).js': ['babel', 'coverage']
     },
 
-    babelPreprocessor: { options: { stage: 0, sourceMap: 'inline' } },
+    babelPreprocessor: {
+      options: {
+        stage: 0,
+        sourceMap: 'inline'
+      }
+    },
 
     basePath: 'public',
 
@@ -29,9 +34,8 @@ module.exports = function (config) {
     reporters: ['dots', 'coverage'],
 
     coverageReporter: {
-      instrumenters: { isparta : require('isparta') },
-      instrumenter: { 'app/**/*.js': 'isparta' },
       dir: '../reports/coverage/',
+      subdir: '.',
       reporters: [
         {type: 'html'}, {type: 'json'}, {type: 'lcov'}, {type: 'text-summary'}
       ]
