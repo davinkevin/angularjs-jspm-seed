@@ -24,9 +24,9 @@ import template from './messages.html!text';
 @View({
   template : template
 })
-class Func1Ctrl {
+export default class Func1Ctrl {
 
-  constructor (CustomLogService) {
+  constructor(CustomLogService) {
     "ngInject";
     this.customeLogService = CustomLogService;
     this.pageName = "An Angular Seed Project :D";
@@ -41,5 +41,3 @@ class Func1Ctrl {
     this.messages.push({ id : 4, text : 'The fourth message'});
   }
 }
-
-export default Func1Ctrl;
