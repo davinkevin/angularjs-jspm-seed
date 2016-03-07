@@ -24,7 +24,6 @@ reports
 node_modules
 public/jspm_packages
 dist/*
-!/dist/.keep
 
 ### Mac Os X
 .DS_Store

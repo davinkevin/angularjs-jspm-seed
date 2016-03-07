@@ -60,6 +60,7 @@
     "karma-jasmine-matchers": "^2.0.0-beta2",
     "karma-jspm": "^2.0.1",
     "karma-phantomjs-launcher": "^0.2.1",
+    "mkdirp": "^0.5.1",
     "phantomjs": "^1.9.18",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
