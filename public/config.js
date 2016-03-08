@@ -17,9 +17,9 @@ System.config({
   separateCSS: true,
 
   map: {
-    "angular": "npm:angular@1.4.7",
+    "angular": "npm:angular@1.5.0",
     "angular-mocks": "npm:angular-mocks@1.5.0",
-    "angular-route": "npm:angular-route@1.4.7",
+    "angular-route": "npm:angular-route@1.5.0",
     "babel": "npm:babel-core@5.8.35",
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "bootstrap-sass": "github:twbs/bootstrap-sass@3.3.6",
@@ -69,9 +69,6 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "module": "github:jspm/nodelibs-module@0.1.0",
       "path": "github:jspm/nodelibs-path@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:angular@1.4.7": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:assert@1.3.0": {
