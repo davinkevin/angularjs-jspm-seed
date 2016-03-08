@@ -38,10 +38,12 @@
     "gulp-flatten": "^0.2.0",
     "gulp-git": "^1.6.0",
     "gulp-gzip": "^1.2.0",
+    "gulp-if": "^2.0.0",
     "gulp-inject": "^3.0.0",
     "gulp-modify-css-urls": "^0.2.0",
     "gulp-ng-annotate": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.4.2",
@@ -62,6 +64,7 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "mkdirp": "^0.5.1",
     "phantomjs": "^1.9.18",
+    "protractor": "^3.1.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "semver": "^5.0.3"
@@ -69,7 +72,7 @@
   "scripts": {
     "prebuild": "gulp sass",
     "preserve-prod": "npm run build",
-    "postinstall": "jspm install",
+    "postinstall": "jspm install && webdriver-manager update",
     "build": "gulp build",
     "release": "gulp release --type $(type)",
     "sass": "gulp sass",
@@ -77,6 +80,7 @@
     "serve-prod": "http-server -p 8001 dist/",
     "start": "npm install && npm run serve-prod",
     "test": "karma start karma.config.js --single-run",
-    "test-tdd": "karma start karma.config.js"
+    "test-tdd": "karma start karma.config.js",
+    "test-e2e": "protractor"
   }
 }

@@ -3,14 +3,11 @@ import browserSync from 'browser-sync';
 import modRewrite  from 'connect-modrewrite';
 import paths from '../paths';
 
-function startBrowserSync(directoryBase, files, browser) {
-  browser = browser === undefined ? 'default' : browser;
-  files = files === undefined ? 'default' : files;
-
+function startBrowserSync(directoryBase, files = 'default', browser = 'default', port = 8000, ghostMode = true) {
   browserSync({
     files: files,
     open: true,
-    port: 8000,
+    port: port,
     notify: true,
     server: {
       baseDir: directoryBase,
@@ -18,7 +15,8 @@ function startBrowserSync(directoryBase, files, browser) {
         modRewrite(['!\\.\\w+$ /index.html [L]']) // require for HTML5 mode
       ]
     },
-    browser: browser
+    browser: browser,
+    ghostMode: ghostMode
   });
 }
 
