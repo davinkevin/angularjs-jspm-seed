@@ -1,4 +1,3 @@
-
 import angular from 'angular';
 
 export function Module({name, inject, modules = []}) {
@@ -9,8 +8,9 @@ export function Module({name, inject, modules = []}) {
 
     Target.$angularModule = angular.isUndefined(inject) ? angular.module(name, modules.map(extractAngularModuleName)) : extractAngularModule(inject);
 
-    if (Target.component) Target.$angularModule.directive(Target.$directiveName, Target.component);
-    if (Target.routeConfig) Target.$angularModule.config(Target.routeConfig);
+    if (Target.component) Target.$angularModule.component(Target.$componentName, Target.component);
+    if (Target.directive) Target.$angularModule.directive(Target.$directiveName, Target.directive);
+    if (Target.routeConfig) Target.$angularModule.config(($routeProvider) => { "ngInject"; $routeProvider.when(...Target.routeConfig); });
     if (Target.$serviceName) Target.$angularModule.service(Target.$serviceName, Target);
 
     for (let config of Target.$config || []) {
@@ -23,38 +23,43 @@ export function Module({name, inject, modules = []}) {
   };
 }
 
-export function RouteConfig({ path, as = 'vm', reloadOnSearch = true, resolve = {}}) {
+export function RouteConfig({ path, as = 'vm', reloadOnSearch = true, resolve = {}, template = ''}) {
   return Target => {
-    if (!Target.$template) throw new TypeError("Template should be defined");
     if (!path) throw new TypeError("Path should be Defined");
 
-    Target.routeConfig = ($routeProvider) => {
-      "ngInject";
+    Target.routeConfig = [path, {
+      template: template,
+      controller: Target,
+      controllerAs : as,
+      reloadOnSearch : reloadOnSearch,
+      resolve : resolve
+    }];
+  };
+}
 
-      let parameters = {
-        template: Target.$template,
-        controller: Target,
-        controllerAs : as,
-        reloadOnSearch : reloadOnSearch,
-        resolve : resolve
-      };
+export function Component({as = '$ctrl', bindings = {}, selector, template = ''}) {
+  return Target => {
+    if (!selector) throw new TypeError("A selector should be defined in the current annotation @Component");
 
-      $routeProvider.when(path, parameters);
+    Target.$componentName = snakeCaseToCamelCase(selector);
+    Target.component = {
+      template: template,
+      controller : Target,
+      controllerAs : as,
+      bindings : bindings
     };
   };
 }
 
-export function Component({restrict = 'E', scope = true, as = 'vm', bindToController = true, selector = ""}) {
+export function Directive({scope = true, as = 'vm', bindToController = true, selector, require = ''}) {
   return Target => {
-    if (!Target.$template && restrict.indexOf('E') !== -1 ) throw new TypeError("A Template should be defined with the annotation @View for Element Component (restrict : E)");
     if (!selector) throw new TypeError("A selector should be defined in the current annotation @Component");
 
     Target.$directiveName = snakeCaseToCamelCase(selector);
-
-    Target.component = () => {
+    Target.directive = () => {
       let ddo = {
-        restrict : restrict,
-        template: Target.$template,
+        restrict : 'A',
+        require : require,
         scope : scope,
         controller : Target,
         controllerAs : as,
@@ -67,11 +72,6 @@ export function Component({restrict = 'E', scope = true, as = 'vm', bindToContro
   };
 }
 
-export function View({template}) {
-  return Target => {
-    Target.$template = template;
-  };
-}
 
 export function Service(name) {
   return Target => {
@@ -87,9 +87,9 @@ export function Config(configFunction) {
 }
 
 export function Run(runFunction) {
-  return Target => {
+  return (Target, name, descriptor) => {
     if (!Target.$run) Target.$run = [];
-    Target.$run.push(runFunction);
+    Target.$run.push(runFunction || descriptor.value);
   };
 }
 

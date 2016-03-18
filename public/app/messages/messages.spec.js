@@ -26,26 +26,13 @@ describe("Message Component", () => {
       expect(mc.messages).toBeArrayOfSize(4);
     });
 
-    describe('Message Route', () => {
-
-      let $routeProvider, route, param;
-
-      beforeEach(() => {
-        $routeProvider = {
-          when : function when(_route, _param) {
-            route = _route;
-            param = _param;
-          }
-        };
-      });
-
-      it('should publish route', () => {
-        MessageCtrl.routeConfig($routeProvider);
-        expect(route).toBe('/messages');
-        expect(param.controllerAs).toBe('mc');
-        expect(param.template).toBe(template);
-      });
+    it('should publish route', () => {
+      let [path, {controllerAs, template}] = MessageCtrl.routeConfig;
+      expect(path).toBe('/messages');
+      expect(controllerAs).toBe('mc');
+      expect(template).toBe(template);
     });
 
   });
+
 });

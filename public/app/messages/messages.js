@@ -2,7 +2,7 @@
   * angularjs-jspm-seed
   * Created by kdavin on 23/10/2015.
   */
-import {RouteConfig, View, Module, Run} from '../decorators.js';
+import {RouteConfig, Module, Run} from '../decorators.js';
 import CustomLogService from '../common/service/customLogService';
 import AppRouteConfig from '../config/route/route';
 import MessageModule from './message/message';
@@ -18,11 +18,9 @@ import template from './messages.html!text';
 })
 @Run(($log) => { "ngInject"; $log.info("Running app.func1 ..."); })
 @RouteConfig({
-  path : '/messages',
-    as : 'mc'
-})
-@View({
-  template : template
+  path: '/messages',
+  as: 'mc',
+  template: template
 })
 export default class Func1Ctrl {
 

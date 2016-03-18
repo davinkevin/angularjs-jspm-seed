@@ -1,19 +1,16 @@
-import {Component, View, Module} from '../../decorators.js';
+import {Component, Module} from '../../decorators.js';
 import template from './message.html!text';
-
 
 @Module({
   name : 'app.func1.subFunc1'
 })
 @Component({
   selector : 'message-with-snake-case',
-  bindToController : {
+  bindings : {
     text : '='
   },
-  as : 'mic'
-})
-@View({
-  template : template
+  as : 'mic',
+  template: template
 })
 export default class Message {
   constructor() {

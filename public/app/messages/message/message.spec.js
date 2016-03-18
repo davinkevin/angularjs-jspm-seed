@@ -9,7 +9,7 @@ describe('Message', () => {
 
   it('should be a component', () => {
       expect(Message.component).toBeDefined();
-      expect(Message.$directiveName).toBeDefined();
+      expect(Message.$componentName).toBeDefined();
   });
 
 });
