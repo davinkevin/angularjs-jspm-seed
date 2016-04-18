@@ -9,10 +9,10 @@ describe('Decorators', () => {
     it('should define route configuration', () => {
       @Boot({element: angular.element('<bar/>')})
       @Module({name: 'moduleWithRoute', modules: ['ngRoute']})
-      @RouteConfig({path : '/val', as : 'valc', reloadOnSearch : false, resolve : {}, template: '<foo></foo>'})
+      @RouteConfig({path : '/val', as : 'valc', reloadOnSearch : false, resolve : {}, template: '<foo></foo>', foo: 'bar', bar: 'foo'})
       class RouteClass{}
 
-      expect(RouteClass.routeConfig).toEqual(['/val', { template: '<foo></foo>', controller: RouteClass, controllerAs : 'valc', reloadOnSearch : false, resolve : {}}]);
+      expect(RouteClass.routeConfig).toEqual(['/val', { template: '<foo></foo>', controller: RouteClass, controllerAs : 'valc', reloadOnSearch : false, resolve : {}, foo: 'bar', bar: 'foo'}]);
     });
 
     it('should define route configuration with default attributes', () => {

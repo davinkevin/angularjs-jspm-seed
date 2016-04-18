@@ -23,17 +23,17 @@ export function Module({name, inject, modules = []}) {
   };
 }
 
-export function RouteConfig({ path, as = 'vm', reloadOnSearch = true, resolve = {}, template = ''}) {
+export function RouteConfig({ path, as = 'vm', reloadOnSearch = true, resolve = {}, template = '', ...params}) {
   return Target => {
     if (!path) throw new TypeError("Path should be Defined");
 
-    Target.routeConfig = [path, {
+    Target.routeConfig = [path, angular.extend({}, params, {
       template: template,
       controller: Target,
       controllerAs : as,
       reloadOnSearch : reloadOnSearch,
       resolve : resolve
-    }];
+    })];
   };
 }
 
