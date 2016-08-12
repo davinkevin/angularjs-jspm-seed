@@ -33,6 +33,7 @@ export default {
     js : `${root}/${srcDirName}/${appName}/**/!(*.spec).js`,
     fonts : `${root}/${srcDirName}/fonts/**/*.${fontsExtension}`,
     projectFonts : `${root}/${srcDirName}/**/*.${fontsExtension}`,
-    html : `${root}/${srcDirName}/${appName}/**/*.html`
+    html : `${root}/${srcDirName}/${appName}/**/*.html`,
+    images : `${root}/${srcDirName}/images/**/*`,
   }
 }

@@ -5,9 +5,10 @@ import paths from '../paths';
 
 let modifyUrlOfFontUrl = {modify : (url) => '/fonts' + url.substr(url.lastIndexOf('/'))};
 
-gulp.task('sass', () =>
-    gulp.src(paths.glob.scss)
-      .pipe(sass().on('error', sass.logError))
-      .pipe(modifyCssUrl(modifyUrlOfFontUrl))
-      .pipe(gulp.dest(`${paths.srcDir}/${paths.app.name}`))
-);
+
+export const sassTask = () => gulp.src(paths.glob.scss)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(modifyCssUrl(modifyUrlOfFontUrl))
+    .pipe(gulp.dest(`${paths.srcDir}/${paths.app.name}`));
+
+gulp.task('sass', sassTask);

@@ -5,7 +5,6 @@ import paths from '../paths';
 import conventionalChangelog from 'gulp-conventional-changelog';
 import bump from 'gulp-bump';
 import git from 'gulp-git';
-import runSequence from 'run-sequence';
 
 import pkg from '../../package.json';
 
@@ -59,6 +58,4 @@ gulp.task('push-to-origin', (cb) => {
     });
 });
 
-gulp.task('release', (cb) => {
-    runSequence('bump', 'changelog', 'commit-changelog', 'create-version-tag', 'push-to-origin', cb);
-});
+gulp.task('release', gulp.series('bump', 'changelog', 'commit-changelog', 'create-version-tag', 'push-to-origin'));

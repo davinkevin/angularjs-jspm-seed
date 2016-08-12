@@ -3,7 +3,7 @@ module.exports = function (config) {
     frameworks: ['jspm', 'jasmine', 'jasmine-matchers'],
 
     files: [
-      '../node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js'
+      '../node_modules/babel-core/browser-polyfill.js'
     ],
 
     preprocessors: {
